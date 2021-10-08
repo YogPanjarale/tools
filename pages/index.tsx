@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>Bunch of random tools created by Yog</title>
+        <title>Bunch of random Tools created by Yog</title>
         <link rel="icon" href="/handyman_black_24dp.svg" />
       </Head>
 
@@ -12,14 +12,14 @@ export default function Home() {
         <h1 className="text-6xl font-bold">
           Welcome to{' '}
           <a className="text-blue-600" href="#">
-            tools
+            Tools
           </a>
         </h1>
 
         <p className="mt-3 text-2xl">
           Get started by clicking{' '}
           <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            any of the tools
+            any of the Tools
           </code>
         </p>
 

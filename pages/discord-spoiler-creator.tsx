@@ -15,7 +15,7 @@ function Creator() {
 		<div className="flex flex-col items-center justify-center min-h-screen py-2">
 			<Head>
 				<title>
-					Discord Spoiler Text generator | tools by Yog Panjarale
+					Discord Spoiler Text generator | Tools by Yog Panjarale
 				</title>
 				<link rel="icon" href="/handyman_black_24dp.svg" />
 			</Head>
