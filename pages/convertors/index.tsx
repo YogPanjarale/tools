@@ -1,8 +1,7 @@
-import Head from "next/head";
 import Footer from "@components/Footer";
-import data from "@data";
-
-export default function Home() {
+import Head from 'next/head';
+import {convertors as data} from '@data'
+export default function Convertors() {
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen py-2">
 			<Head>
