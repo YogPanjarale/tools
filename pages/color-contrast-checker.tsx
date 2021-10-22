@@ -3,6 +3,35 @@ import root from "@data";
 import Head from "next/head";
 import { useState } from "react";
 const data=root.tools[1]
+function gcd(a, b) {
+	return (b) ? gcd(b, a % b) : a;
+}
+var decimalToFraction = function (_decimal) {
+    if (_decimal == parseInt(_decimal)) {
+        return {
+            top: parseInt(_decimal),
+            bottom: 1,
+            display: parseInt(_decimal) + '/' + 1
+        };
+    }
+    else {
+        var top = _decimal.toString().includes(".") ? _decimal.toString().replace(/\d+[.]/, '') : 0;
+        var bottom = Math.pow(10, top.toString().replace('-','').length);
+        if (_decimal >= 1) {
+            top = +top + (Math.floor(_decimal) * bottom);
+        }
+        else if (_decimal <= -1) {
+            top = +top + (Math.ceil(_decimal) * bottom);
+        }
+
+        var x = Math.abs(gcd(top, bottom));
+        return {
+            top: (top / x),
+            bottom: (bottom / x),
+            display: (top / x) + ' : ' + (bottom / x)
+        };
+    }
+};
 function hexToRgb(hex: string) {
 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 	hex = hex.replace(
@@ -78,7 +107,7 @@ function Checker() {
 				? (color2luminance + 0.05) / (color1luminance + 0.05)
 				: (color1luminance + 0.05) / (color2luminance + 0.05);
 		// set the result
-		setResult(1/ratio);
+		setResult(decimalToFraction(ratio).display);
 	};
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -111,7 +140,7 @@ function Checker() {
 					>
 						Output
 					</label>
-					<code className="p-3 font-mono text-lg bg-gray-100 rounded-md break-all max-w-md">{result||1} : 1</code>
+					<code className="p-3 font-mono text-lg bg-gray-100 rounded-md break-all max-w-md">{result||1}</code>
 				</div>
 				<button
 					className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 my-1 px-4 mx-2 rounded focus:outline-none focus:shadow-outline"
