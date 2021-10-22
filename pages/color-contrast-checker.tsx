@@ -2,36 +2,23 @@ import { MetaTags } from "@components/metatags";
 import root from "@data";
 import Head from "next/head";
 import { useState } from "react";
-const data=root.tools[1]
+const data = root.tools[1]
 function gcd(a, b) {
 	return (b) ? gcd(b, a % b) : a;
 }
-var decimalToFraction = function (_decimal) {
-    if (_decimal == parseInt(_decimal)) {
-        return {
-            top: parseInt(_decimal),
-            bottom: 1,
-            display: parseInt(_decimal) + '/' + 1
-        };
-    }
-    else {
-        var top = _decimal.toString().includes(".") ? _decimal.toString().replace(/\d+[.]/, '') : 0;
-        var bottom = Math.pow(10, top.toString().replace('-','').length);
-        if (_decimal >= 1) {
-            top = +top + (Math.floor(_decimal) * bottom);
-        }
-        else if (_decimal <= -1) {
-            top = +top + (Math.ceil(_decimal) * bottom);
-        }
-
-        var x = Math.abs(gcd(top, bottom));
-        return {
-            top: (top / x),
-            bottom: (bottom / x),
-            display: (top / x) + ' : ' + (bottom / x)
-        };
-    }
-};
+function fra_to_dec(num) {
+	var test = (String(num).split('.')[1] || []).length;
+	var num = (num * (10 ** Number(test)))
+	var den = (10 ** Number(test))
+	function reduce(numerator, denominator) {
+		var gcd = function gcd(a, b) {
+			return b ? gcd(b, a % b) : a;
+		};
+		gcd = gcd(numerator, denominator);
+		return [numerator / gcd, denominator / gcd];
+	}
+	return (reduce(num, den)[0] + " : " + reduce(num, den)[1])
+}
 function hexToRgb(hex: string) {
 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 	hex = hex.replace(
@@ -44,10 +31,10 @@ function hexToRgb(hex: string) {
 	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 	return result
 		? {
-				r: parseInt(result[1], 16),
-				g: parseInt(result[2], 16),
-				b: parseInt(result[3], 16),
-		  }
+			r: parseInt(result[1], 16),
+			g: parseInt(result[2], 16),
+			b: parseInt(result[3], 16),
+		}
 		: null;
 }
 function luminance(r: number, g: number, b: number) {
@@ -73,7 +60,7 @@ function ColorInput({ value, setValue, title }) {
 				onChange={(e) => setValue(e.target.value)}
 				value={value}
 			/>
-            <label
+			<label
 				className="block text-gray-800 text-sm font-bold mb-2"
 				htmlFor="username"
 			>
@@ -107,14 +94,14 @@ function Checker() {
 				? (color2luminance + 0.05) / (color1luminance + 0.05)
 				: (color1luminance + 0.05) / (color2luminance + 0.05);
 		// set the result
-		setResult(decimalToFraction(ratio).display);
+		setResult(fra_to_dec(ratio));
 	};
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen py-2">
 			<Head>
 				<title>Color Contrast checker | Tools by Yog Panjarale</title>
 				<link rel="icon" href="https://pic.onlinewebfonts.com/svg/img_411294.png" />
-                <MetaTags title={data.title} description={data.description} image_url="https://pic.onlinewebfonts.com/svg/img_411294.png" url={data.href}/>
+				<MetaTags title={data.title} description={data.description} image_url="https://pic.onlinewebfonts.com/svg/img_411294.png" url={data.href} />
 			</Head>
 			<main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
 				<h1 className="text-4xl font-bold">
@@ -140,17 +127,17 @@ function Checker() {
 					>
 						Output
 					</label>
-					<code className="p-3 font-mono text-lg bg-gray-100 rounded-md break-all max-w-md">{result||1}</code>
+					<code className="p-3 font-mono text-lg bg-gray-100 rounded-md break-all max-w-md">{result || 1}</code>
 				</div>
 				<button
 					className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 my-1 px-4 mx-2 rounded focus:outline-none focus:shadow-outline"
 					type="button"
 					onClick={() =>
 						// navigator.clipboard.writeText(result.toString())
-                        calculate()
+						calculate()
 					}
 				>
-Calculate			</button>
+					Calculate			</button>
 			</main>
 			<footer className="flex items-center justify-center w-full h-24 border-t">
 				<a
