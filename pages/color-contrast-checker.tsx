@@ -111,7 +111,7 @@ function Checker() {
 					>
 						Output
 					</label>
-					<code className="p-3 font-mono text-lg bg-gray-100 rounded-md break-all max-w-md">{result}</code>
+					<code className="p-3 font-mono text-lg bg-gray-100 rounded-md break-all max-w-md">{result||1} : 1</code>
 				</div>
 				<button
 					className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 my-1 px-4 mx-2 rounded focus:outline-none focus:shadow-outline"
