@@ -6,7 +6,7 @@ const data = root.tools[1]
 function gcd(a, b) {
 	return (b) ? gcd(b, a % b) : a;
 }
-function toFraction(x, tolerance) {
+function toFraction(x, tolerance=0.0001) {
     if (x == 0) return [0, 1];
     if (x < 0) x = -x;
     if (!tolerance) tolerance = 0.0001;
