@@ -6,18 +6,23 @@ const data = root.tools[1]
 function gcd(a, b) {
 	return (b) ? gcd(b, a % b) : a;
 }
-function fra_to_dec(num) {
-	var test = (String(num).split('.')[1] || []).length;
-	var num = (num * (10 ** Number(test)))
-	var den = (10 ** Number(test))
-	function reduce(numerator, denominator) {
-		var gcd = function gcd(a, b) {
-			return b ? gcd(b, a % b) : a;
-		};
-		gcd = gcd(numerator, denominator);
-		return [numerator / gcd, denominator / gcd];
-	}
-	return (reduce(num, den)[0] + " : " + reduce(num, den)[1])
+function toFraction(x, tolerance) {
+    if (x == 0) return [0, 1];
+    if (x < 0) x = -x;
+    if (!tolerance) tolerance = 0.0001;
+    var num = 1, den = 1;
+
+    function iterate() {
+        var R = num/den;
+        if (Math.abs((R-x)/x) < tolerance) return;
+
+        if (R < x) num++;
+        else den++;
+        iterate();
+    }
+
+    iterate();
+    return num+" : "+den;
 }
 function hexToRgb(hex: string) {
 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -94,7 +99,7 @@ function Checker() {
 				? (color2luminance + 0.05) / (color1luminance + 0.05)
 				: (color1luminance + 0.05) / (color2luminance + 0.05);
 		// set the result
-		setResult(fra_to_dec(ratio));
+		setResult(toFraction(ratio));
 	};
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen py-2">
