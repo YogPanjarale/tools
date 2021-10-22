@@ -1,6 +1,8 @@
+import { MetaTags } from "@components/metatags";
+import root from "@data";
 import Head from "next/head";
 import { useState } from "react";
-
+const data=root.tools[1]
 function hexToRgb(hex: string) {
 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 	hex = hex.replace(
@@ -42,6 +44,12 @@ function ColorInput({ value, setValue, title }) {
 				onChange={(e) => setValue(e.target.value)}
 				value={value}
 			/>
+            <label
+				className="block text-gray-800 text-sm font-bold mb-2"
+				htmlFor="username"
+			>
+				{value}
+			</label>
 		</div>
 	);
 }
@@ -76,7 +84,8 @@ function Checker() {
 		<div className="flex flex-col items-center justify-center min-h-screen py-2">
 			<Head>
 				<title>Color Contrast checker | Tools by Yog Panjarale</title>
-				<link rel="icon" href="/handyman_black_24dp.svg" />
+				<link rel="icon" href="https://pic.onlinewebfonts.com/svg/img_411294.png" />
+                <MetaTags title={data.title} description={data.description} image_url="https://pic.onlinewebfonts.com/svg/img_411294.png" url={data.href}/>
 			</Head>
 			<main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
 				<h1 className="text-4xl font-bold">
