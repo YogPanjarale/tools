@@ -99,7 +99,7 @@ function Checker() {
 				? (color2luminance + 0.05) / (color1luminance + 0.05)
 				: (color1luminance + 0.05) / (color2luminance + 0.05);
 		// set the result
-		setResult(toFraction(ratio));
+		setResult(toFraction(ratio) as any as string);
 	};
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen py-2">
