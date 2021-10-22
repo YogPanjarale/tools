@@ -7,6 +7,11 @@ export default {
             href: "/discord-spoiler-creator"
         },
         {
+            title: "Color Contrast tool",
+            description: "Check color contrast between two colors",
+            href: "/color-contrast-checker"
+        },
+        {
             title: "Convertors →",
             description: "Convertor for recently used units and mesurements",
             href: "/convertors"
