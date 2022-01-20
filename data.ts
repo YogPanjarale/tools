@@ -12,6 +12,11 @@ export default {
             href: "/color-contrast-checker"
         },
         {
+            title: "Voltage Divider",
+            description:"Calculate Voltage drop by R1 ,R2, V1 & V2",
+            href: "/voltage-divider"
+        },
+        {
             title: "Convertors →",
             description: "Convertor for recently used units and mesurements",
             href: "/convertors"
