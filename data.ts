@@ -7,6 +7,11 @@ export default {
             href: "/discord-spoiler-creator"
         },
         {
+            title: "Character Counter →",
+            description: "Count characters in text",
+            href: "/character-counter"
+        },
+        {
             title: "Color Contrast tool",
             description: "Check color contrast between two colors",
             href: "/color-contrast-checker"
