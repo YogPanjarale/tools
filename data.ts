@@ -7,6 +7,11 @@ export default {
             href: "/discord-spoiler-creator"
         },
         {
+            title: "Discord IST Timestamp Text Generator →",
+            description: "Generate discord timestamp text generator from IST time format (DD:MM:YYYY HH:MM).",
+            href: "/discord-timestamp-creator"
+        },
+        {
             title: "Character Counter →",
             description: "Count characters in text",
             href: "/character-counter"
